@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NServiceBus.Transport.SQLServer</name>
+    </assembly>
+    <members>
+        <member name="T:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions">
+            <summary>
+            Adds extra configuration for the Sql Server transport.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions.DefaultSchema(NServiceBus.TransportExtensions{NServiceBus.SqlServerTransport},System.String)">
+            <summary>
+            Sets a default schema for both input and output queues
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions.UseSchemaForEndpoint(NServiceBus.TransportExtensions{NServiceBus.SqlServerTransport},System.String,System.String)">
+            <summary>
+            Specifies custom schema for given endpoint.
+            </summary>
+            <param name="transportExtensions">The <see cref="T:NServiceBus.TransportExtensions`1" /> to extend.</param>
+            <param name="endpointName">Endpoint name.</param>
+            <param name="schema">Custom schema value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions.UseSchemaForQueue(NServiceBus.TransportExtensions{NServiceBus.SqlServerTransport},System.String,System.String)">
+            <summary>
+            Overrides schema value for given queue. This setting will take precedence over any other source of schema information.
+            </summary>
+            <param name="transportExtensions">The <see cref="T:NServiceBus.TransportExtensions`1" /> to extend.</param>
+            <param name="queueName">Queue name.</param>
+            <param name="schema">Custom schema value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions.TimeToWaitBeforeTriggeringCircuitBreaker(NServiceBus.TransportExtensions{NServiceBus.SqlServerTransport},System.TimeSpan)">
+            <summary>
+            Overrides the default time to wait before triggering a circuit breaker that initiates the endpoint shutdown procedure
+            in case there are numerous errors
+            while trying to receive messages.
+            </summary>
+            <param name="transportExtensions">The <see cref="T:NServiceBus.TransportExtensions`1" /> to extend.</param>
+            <param name="waitTime">Time to wait before triggering the circuit breaker.</param>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions.UseCustomSqlConnectionFactory(NServiceBus.TransportExtensions{NServiceBus.SqlServerTransport},System.Func{System.Threading.Tasks.Task{System.Data.SqlClient.SqlConnection}})">
+            <summary>
+            Specifies connection factory to be used by sql transport.
+            </summary>
+            <param name="transportExtensions">The <see cref="T:NServiceBus.TransportExtensions`1" /> to extend.</param>
+            <param name="sqlConnectionFactory">Factory that returns connection ready for usage.</param>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions.TransactionScopeOptions(NServiceBus.TransportExtensions{NServiceBus.SqlServerTransport},System.Nullable{System.TimeSpan},System.Nullable{System.Transactions.IsolationLevel})">
+            <summary>
+            Allows the IsolationLevel and transaction timeout to be changed for the TransactionScope used to receive messages.
+            </summary>
+            <remarks>
+            If not specified the default transaction timeout of the machine will be used and the isolation level will be set to
+            `ReadCommited`.
+            </remarks>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions.WithPeekDelay(NServiceBus.TransportExtensions{NServiceBus.SqlServerTransport},System.Nullable{System.TimeSpan})">
+            <summary>
+            Allows changing the queue peek delay.
+            </summary>
+            <param name="transportExtensions">The <see cref="T:NServiceBus.TransportExtensions`1" /> to extend.</param>
+            <param name="delay">The delay value</param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportSettingsExtensions.EnableLegacyMultiInstanceMode(NServiceBus.TransportExtensions{NServiceBus.SqlServerTransport},System.Func{System.String,System.Threading.Tasks.Task{System.Data.SqlClient.SqlConnection}})">
+            <summary>
+            Enables multi-instance mode.
+            </summary>
+            <param name="transportExtensions">The <see cref="T:NServiceBus.TransportExtensions`1" /> to extend.</param>
+            <param name="sqlConnectionFactory">Function that returns opened sql connection based on destination queue name.</param>
+        </member>
+        <member name="P:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.DeliveryConstraints">
+            <summary>
+            <see cref="P:NServiceBus.Transport.TransportInfrastructure.DeliveryConstraints" />
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.TransactionMode">
+            <summary>
+            <see cref="P:NServiceBus.Transport.TransportInfrastructure.TransactionMode" />
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.OutboundRoutingPolicy">
+            <summary>
+            <see cref="P:NServiceBus.Transport.TransportInfrastructure.OutboundRoutingPolicy" />
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.ConfigureReceiveInfrastructure">
+            <summary>
+            <see cref="M:NServiceBus.Transport.TransportInfrastructure.ConfigureReceiveInfrastructure" />
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.ConfigureSendInfrastructure">
+            <summary>
+            <see cref="M:NServiceBus.Transport.TransportInfrastructure.ConfigureSendInfrastructure" />
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.ConfigureSubscriptionInfrastructure">
+            <summary>
+            <see cref="M:NServiceBus.Transport.TransportInfrastructure.ConfigureSubscriptionInfrastructure" />
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.BindToLocalEndpoint(NServiceBus.Routing.EndpointInstance)">
+            <summary>
+            <see cref="M:NServiceBus.Transport.TransportInfrastructure.BindToLocalEndpoint(NServiceBus.Routing.EndpointInstance)" />
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.ToTransportAddress(NServiceBus.LogicalAddress)">
+            <summary>
+            <see cref="M:NServiceBus.Transport.TransportInfrastructure.ToTransportAddress(NServiceBus.LogicalAddress)" />
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Transport.SQLServer.SqlServerTransportInfrastructure.MakeCanonicalForm(System.String)">
+            <summary>
+            <see cref="M:NServiceBus.Transport.TransportInfrastructure.MakeCanonicalForm(System.String)" />
+            </summary>
+        </member>
+        <member name="T:NServiceBus.SqlServerTransport">
+            <summary>
+            SqlServer Transport
+            </summary>
+        </member>
+        <member name="P:NServiceBus.SqlServerTransport.ExampleConnectionStringForErrorMessage">
+            <summary>
+            <see cref="P:NServiceBus.Transport.TransportDefinition.ExampleConnectionStringForErrorMessage" />
+            </summary>
+        </member>
+        <member name="P:NServiceBus.SqlServerTransport.RequiresConnectionString">
+            <summary>
+            <see cref="P:NServiceBus.Transport.TransportDefinition.RequiresConnectionString" />
+            </summary>
+        </member>
+        <member name="M:NServiceBus.SqlServerTransport.Initialize(NServiceBus.Settings.SettingsHolder,System.String)">
+            <summary>
+            <see cref="M:NServiceBus.Transport.TransportDefinition.Initialize(NServiceBus.Settings.SettingsHolder,System.String)" />
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.NotNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could never be <c>null</c>
+            </summary>
+            <example><code>
+            [NotNull] public object Foo() {
+              return null; // Warning: Possible 'null' assignment
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.ContractAnnotationAttribute">
+            <summary>
+            Describes dependency between method input and output
+            </summary>
+            <syntax>
+            <p>Function Definition Table syntax:</p>
+            <list>
+            <item>FDT      ::= FDTRow [;FDTRow]*</item>
+            <item>FDTRow   ::= Input =&gt; Output | Output &lt;= Input</item>
+            <item>Input    ::= ParameterName: Value [, Input]*</item>
+            <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
+            <item>Value    ::= true | false | null | notnull | canbenull</item>
+            </list>
+            If method has single input parameter, it's name could be omitted.<br/>
+            Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same)
+            for method output means that the methos doesn't return normally.<br/>
+            <c>canbenull</c> annotation is only applicable for output parameters.<br/>
+            You can use multiple <c>[ContractAnnotation]</c> for each FDT row,
+            or use single attribute with rows separated by semicolon.<br/>
+            </syntax>
+            <examples><list>
+            <item><code>
+            [ContractAnnotation("=> halt")]
+            public void TerminationMethod()
+            </code></item>
+            <item><code>
+            [ContractAnnotation("halt &lt;= condition: false")]
+            public void Assert(bool condition, string text) // regular assertion method
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null => true")]
+            public bool IsNullOrEmpty(string s) // string.IsNullOrEmpty()
+            </code></item>
+            <item><code>
+            // A method that returns null if the parameter is null,
+            // and not null if the parameter is not null
+            [ContractAnnotation("null => null; notnull => notnull")]
+            public object Transform(object data) 
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null=>false; =>true,result:notnull; =>false, result:null")]
+            public bool TryParse(string s, out Person result)
+            </code></item>
+            </list></examples>
+        </member>
+        <member name="T:JetBrains.Annotations.InvokerParameterNameAttribute">
+            <summary>
+            Indicates that the function argument should be string literal and match one
+            of the parameters of the caller function. For example, ReSharper annotates
+            the parameter of <see cref="T:System.ArgumentNullException"/>
+            </summary>
+            <example><code>
+            public void Foo(string param) {
+              if (param == null)
+                throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
+            }
+            </code></example>
+        </member>
+    </members>
+</doc>

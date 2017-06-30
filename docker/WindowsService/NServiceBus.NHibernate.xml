@@ -1,0 +1,499 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NServiceBus.NHibernate</name>
+    </assembly>
+    <members>
+        <member name="T:NServiceBus.Persistence.NHibernate.NHibernateStorageContext">
+            <summary>
+            Provides users with access to the current NHibernate <see cref="T:NHibernate.ITransaction"/>, <see cref="T:System.Data.IDbConnection"/> and <see cref="T:NHibernate.ISession"/>.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Persistence.NHibernate.NHibernateStorageContext.Connection">
+            <summary>
+            Gets the database connection associated with the current NHibernate <see cref="P:NServiceBus.Persistence.NHibernate.NHibernateStorageContext.Session"/>
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Persistence.NHibernate.NHibernateStorageContext.DatabaseTransaction">
+            <summary>
+            Gets the database transaction associated with the current NHibernate <see cref="P:NServiceBus.Persistence.NHibernate.NHibernateStorageContext.Session"/> or null when using TransactionScope.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Persistence.NHibernate.NHibernateStorageContext.Session">
+            <summary>
+            Gets the current context NHibernate <see cref="T:NHibernate.ISession"/>.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Persistence.NHibernate.NHibernateStorageContext.Transaction">
+            <summary>
+            Gets the current context NHibernate <see cref="T:NHibernate.ITransaction"/>.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Persistence.NHibernate.DeduplicationConfig">
+            <summary>
+            Deduplication configuration extensions.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Persistence.NHibernate.DeduplicationConfig.DisableGatewayDeduplicationSchemaUpdate(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence})">
+            <summary>
+            Disables automatic schema update.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+        </member>
+        <member name="M:NServiceBus.Persistence.NHibernate.DeduplicationConfig.UseGatewayDeduplicationConfiguration(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence},NHibernate.Cfg.Configuration)">
+            <summary>
+            Configures Subscription Storage to use the <paramref name="configuration"/>.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <param name="configuration">The <see cref="T:NHibernate.Cfg.Configuration"/> object.</param>
+        </member>
+        <member name="T:NServiceBus.Persistence.NHibernate.SagaConfig">
+            <summary>
+            Saga configuration extensions.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Persistence.NHibernate.SagaConfig.SagaTableNamingConvention(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence},System.Func{System.Type,System.String})">
+            <summary>
+            Sets the convention to use for naming tables.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <param name="tableNamingConvention">Convention to use for naming tables.</param>
+        </member>
+        <member name="T:NServiceBus.Persistence.NHibernate.NHibernateSettingRetriever">
+            <summary>
+            Abstraction of a source of configuration data.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Persistence.NHibernate.NHibernateSettingRetriever.AppSettings">
+            <summary>
+            Gets the <see cref="T:System.Configuration.AppSettingsSection"/> data for the current application's default configuration.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Persistence.NHibernate.NHibernateSettingRetriever.ConnectionStrings">
+            <summary>
+            Gets the <see cref="T:System.Configuration.ConnectionStringsSection"/> data for the current application's default configuration.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Persistence.NHibernate.SubscriptionConfig">
+            <summary>
+            Subscription configuration extensions.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Persistence.NHibernate.SubscriptionConfig.DisableSubscriptionStorageSchemaUpdate(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence})">
+            <summary>
+            Disables automatic schema update.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+        </member>
+        <member name="M:NServiceBus.Persistence.NHibernate.SubscriptionConfig.UseSubscriptionStorageConfiguration(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence},NHibernate.Cfg.Configuration)">
+            <summary>
+            Configures Subscription Storage to use the <paramref name="configuration"/>.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <param name="configuration">The <see cref="T:NHibernate.Cfg.Configuration"/> object.</param>
+        </member>
+        <member name="M:NServiceBus.Persistence.NHibernate.SubscriptionConfig.EnableCachingForSubscriptionStorage(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence},System.TimeSpan)">
+            <summary>
+            Enables Subscription Storage to use caching.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <param name="expiration">The period of time to cache subscriptions list for.</param>
+        </member>
+        <member name="T:NServiceBus.Persistence.NHibernate.TimeoutConfig">
+            <summary>
+            Timeout configuration extensions.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Persistence.NHibernate.TimeoutConfig.DisableTimeoutStorageSchemaUpdate(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence})">
+            <summary>
+            Disables automatic schema update.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+        </member>
+        <member name="M:NServiceBus.Persistence.NHibernate.TimeoutConfig.UseTimeoutStorageConfiguration(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence},NHibernate.Cfg.Configuration)">
+            <summary>
+            Configures Timeout Storage to use the <paramref name="configuration"/>.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <param name="configuration">The <see cref="T:NHibernate.Cfg.Configuration"/> object.</param>
+        </member>
+        <member name="T:NServiceBus.Persistence.SharedConfig">
+            <summary>
+            Shared configuration extensions.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Persistence.SharedConfig.ConnectionString(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence},System.String)">
+            <summary>
+            Sets the connection string to use for all storages
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <param name="connectionString">The connection string to use.</param>
+        </member>
+        <member name="M:NServiceBus.Persistence.SharedConfig.DisableSchemaUpdate(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence})">
+            <summary>
+            Disables automatic schema update.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+        </member>
+        <member name="M:NServiceBus.Persistence.SharedConfig.UseConfiguration(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence},NHibernate.Cfg.Configuration)">
+            <summary>
+            Configures Subscription Storage to use the <paramref name="configuration"/>.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <param name="configuration">The <see cref="T:NHibernate.Cfg.Configuration"/> object.</param>
+        </member>
+        <member name="M:NServiceBus.Persistence.SharedConfig.RegisterManagedSessionInTheContainer(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence})">
+            <summary>
+            Instructs the NHibernate persistence to register the managed session available via NHibernateStorageSession in the container.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.Persistence.SharedConfig.UseCustomSessionCreationMethod(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence},System.Func{NHibernate.ISessionFactory,System.String,NHibernate.ISession})">
+            <summary>
+            Instructs the NHibernate persistence to use a custom session creation method. The provided method takes the ISessionFactory and the connection string and returns a session.
+            </summary>
+            <param name="persistenceConfiguration"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NServiceBus.NHibernate.Outbox.OutboxConfig">
+            <summary>
+            Outbox configuration extensions.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.NHibernate.Outbox.OutboxConfig.UseOutboxRecord``2(NServiceBus.PersistenceExtensions{NServiceBus.NHibernatePersistence})">
+            <summary>
+            
+            </summary>
+            <param name="persistenceConfiguration"></param>
+        </member>
+        <member name="T:NServiceBus.Outbox.NHibernate.IOutboxRecord">
+            <summary>
+            Represents the outbox record in the database.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Outbox.NHibernate.IOutboxRecord.MessageId">
+            <summary>
+            Id of the incoming message.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Outbox.NHibernate.IOutboxRecord.Dispatched">
+            <summary>
+            Gets or sets if the messages has already been dispatched to destinations.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Outbox.NHibernate.IOutboxRecord.DispatchedAt">
+            <summary>
+            Gets or sets when the messages has been dispatched.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Outbox.NHibernate.IOutboxRecord.TransportOperations">
+            <summary>
+            Gets or sets the serialized transport operations.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Features.NHibernateGatewayDeduplication">
+            <summary>
+            NHibernate Gateway Deduplication.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateGatewayDeduplication.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:NServiceBus.Features.NHibernateGatewayDeduplication"/>.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateGatewayDeduplication.Setup(NServiceBus.Features.FeatureConfigurationContext)">
+            <summary>
+            Called when the feature should perform its initialization. This call will only happen if the feature is enabled.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Features.NHibernateSagaStorage">
+            <summary>
+            NHibernate Saga Storage.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateSagaStorage.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:NServiceBus.Features.NHibernateSagaStorage"/>.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateSagaStorage.Setup(NServiceBus.Features.FeatureConfigurationContext)">
+            <summary>
+            Called when the feature should perform its initialization. This call will only happen if the feature is enabled.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Features.NHibernateStorageSession">
+            <summary>
+            NHibernate Storage Session.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateStorageSession.Setup(NServiceBus.Features.FeatureConfigurationContext)">
+            <summary>
+            Called when the feature should perform its initialization. This call will only happen if the feature is enabled.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Features.NHibernateSubscriptionStorage">
+            <summary>
+            NHibernate Subscription Storage
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateSubscriptionStorage.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:NServiceBus.Features.NHibernateSubscriptionStorage"/>.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateSubscriptionStorage.Setup(NServiceBus.Features.FeatureConfigurationContext)">
+            <summary>
+            Called when the feature should perform its initialization. This call will only happen if the feature is enabled.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Features.NHibernateTimeoutStorage">
+            <summary>
+            NHibernate Timeout Storage.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateTimeoutStorage.#ctor">
+            <summary>
+            Creates an instance of <see cref="T:NServiceBus.Features.NHibernateTimeoutStorage" />.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Features.NHibernateTimeoutStorage.Setup(NServiceBus.Features.FeatureConfigurationContext)">
+            <summary>
+            Called when the feature should perform its initialization. This call will only happen if the feature is enabled.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.NHibernatePersistence">
+            <summary>
+            NHibernate persistence for everything.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.NHibernatePersistence.#ctor">
+            <summary>
+            Constructor that defines the capabilities of the storage
+            </summary>
+        </member>
+        <member name="T:NServiceBus.SagaPersisters.NHibernate.LockModes">
+            <summary>
+            The <see cref="T:NServiceBus.SagaPersisters.NHibernate.LockModes"/> class defines the different lock levels that may be acquired by NHibernate.
+            </summary>
+        </member>
+        <member name="F:NServiceBus.SagaPersisters.NHibernate.LockModes.None">
+            <summary>
+            No lock required. 
+            </summary>
+            <remarks>
+            If an object is requested with this lock mode, a <c>Read</c> lock
+            might be obtained if necessary.
+            </remarks>
+        </member>
+        <member name="F:NServiceBus.SagaPersisters.NHibernate.LockModes.Read">
+            <summary>
+            A shared lock. 
+            </summary>
+            <remarks>
+            Objects are loaded in <c>Read</c> mode by default
+            </remarks>
+        </member>
+        <member name="F:NServiceBus.SagaPersisters.NHibernate.LockModes.Upgrade">
+            <summary>
+            An upgrade lock. 
+            </summary>
+            <remarks>
+            Objects loaded in this lock mode are materialized using an
+            SQL <c>SELECT ... FOR UPDATE</c>
+            </remarks>
+        </member>
+        <member name="F:NServiceBus.SagaPersisters.NHibernate.LockModes.UpgradeNoWait">
+            <summary>
+            Attempt to obtain an upgrade lock, using an Oracle-style
+            <c>SELECT ... FOR UPGRADE NOWAIT</c>. 
+            </summary>
+            <remarks>
+            The semantics of this lock mode, once obtained, are the same as <c>Upgrade</c>
+            </remarks>
+        </member>
+        <member name="F:NServiceBus.SagaPersisters.NHibernate.LockModes.Write">
+            <summary>
+            A <c>Write</c> lock is obtained when an object is updated or inserted.
+            </summary>
+            <remarks>
+            This is not a valid mode for <c>Load()</c> or <c>Lock()</c>.
+            </remarks>
+        </member>
+        <member name="F:NServiceBus.SagaPersisters.NHibernate.LockModes.Force">
+            <summary> 
+            Similar to <see cref="F:NServiceBus.SagaPersisters.NHibernate.LockModes.Upgrade"/> except that, for versioned entities,
+            it results in a forced version increment.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.SagaPersisters.NHibernate.RowVersionAttribute">
+            <summary>
+            Marks a property to be used as a versioning column.
+            </summary>
+            <remarks>
+            For more details see http://www.nhforge.org/doc/nh/en/#mapping-declaration-version
+            </remarks>
+        </member>
+        <member name="T:NServiceBus.SagaPersisters.NHibernate.LockModeAttribute">
+            <summary>
+            Specifies the lock mode to use by default while retrieving <see cref="T:NServiceBus.Saga"/> data.
+            </summary>
+            /// <remarks>
+            It is not intended that users spend much time worrying about locking since Hibernate
+            usually obtains exactly the right lock level automatically. Some "advanced" users may
+            wish to explicitly specify lock levels.
+            If not specified we use <see cref="F:NServiceBus.SagaPersisters.NHibernate.LockModes.Upgrade"/>.
+            For more information about lock modes see http://www.nhforge.org/doc/nh/en/#transactions-locking
+            </remarks>
+        </member>
+        <member name="P:NServiceBus.SagaPersisters.NHibernate.LockModeAttribute.RequestedLockMode">
+            <summary>
+            Gets the <see cref="T:NServiceBus.SagaPersisters.NHibernate.LockModes"/> to be used by the framework while retrieving <see cref="T:NServiceBus.Saga"/> data.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.SagaPersisters.NHibernate.LockModeAttribute.#ctor(NServiceBus.SagaPersisters.NHibernate.LockModes)">
+            <summary>
+            Create a new instance of <see cref="T:NServiceBus.SagaPersisters.NHibernate.LockModeAttribute"/>.
+            </summary>
+            <param name="lockModeToUse">The <see cref="T:NServiceBus.SagaPersisters.NHibernate.LockModes"/> to be used by the framework while retrieving <see cref="T:NServiceBus.Saga"/> data.</param>
+        </member>
+        <member name="T:NServiceBus.SagaPersisters.NHibernate.TableNameAttribute">
+            <summary>
+            Table name to use.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.SagaPersisters.NHibernate.TableNameAttribute.TableName">
+            <summary>
+            Gets the table name.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.SagaPersisters.NHibernate.TableNameAttribute.Schema">
+            <summary>
+            Gets or sets the database schema to use for the table.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.SagaPersisters.NHibernate.TableNameAttribute.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:NServiceBus.SagaPersisters.NHibernate.TableNameAttribute"/>.
+            </summary>
+            <param name="tableName">The table name to use.</param>
+        </member>
+        <member name="T:NServiceBus.Testing.TestingNHibernateSynchronizedStorageSession">
+            <summary>
+            Allows writing automated tests against handlers which use NServiceBus-managed NHibernate session.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Testing.TestingNHibernateSynchronizedStorageSession.#ctor(NHibernate.ISession)">
+            <summary>
+            Creates new instance of the session.
+            </summary>
+            <param name="session">An opened NHibernate session to use in the test. The session is not automatically flushed..</param>
+        </member>
+        <member name="P:NServiceBus.Testing.TestingNHibernateSynchronizedStorageSession.Session">
+            <summary>
+            Gets the underlying NHibernate session.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Deduplication.NHibernate.Config.DeduplicationMessage">
+            <summary>
+            The Gateway message
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Deduplication.NHibernate.Config.DeduplicationMessage.Id">
+            <summary>
+            Id of this message.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Deduplication.NHibernate.Config.DeduplicationMessage.TimeReceived">
+            <summary>
+            The time at which the message was received.
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Deduplication.NHibernate.Config.DeduplicationMessageMap">
+            <summary>
+            Deduplication message mapping class.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Deduplication.NHibernate.Config.DeduplicationMessageMap.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Unicast.Subscriptions.NHibernate.Subscription">
+            <summary>
+            Entity containing subscription data
+            </summary>
+        </member>
+        <member name="T:NServiceBus.SynchronizedStorageSessionExtensions">
+            <summary>
+            Shared session extensions for NHibernate persistence.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.SynchronizedStorageSessionExtensions.Session(NServiceBus.Persistence.SynchronizedStorageSession)">
+            <summary>
+            Gets the current context NHibernate <see cref="T:NHibernate.ISession"/>.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.SynchronizedStorageSessionExtensions.OnSaveChanges(NServiceBus.Persistence.SynchronizedStorageSession,System.Func{NServiceBus.Persistence.SynchronizedStorageSession,System.Threading.Tasks.Task})">
+            <summary>
+            Registers a callback to be called before completing the session.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.TimeoutPersisters.NHibernate.Installer.OptimizedSchemaUpdate.Execute(System.Action{System.String},System.Boolean)">
+            <summary>
+            Execute the schema updates
+            </summary>
+            <param name="scriptAction">The action to write the each schema line.</param>
+            <param name="doUpdate">Commit the script to DB</param>
+        </member>
+        <member name="T:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity">
+            <summary>
+            NHibernate wrapper class for <see cref="T:NServiceBus.Timeout.Core.TimeoutData"/>
+            </summary>
+        </member>
+        <member name="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.Id">
+            <summary>
+            Id of this timeout.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.Destination">
+            <summary>
+            The address of the client who requested the timeout.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.SagaId">
+            <summary>
+            The saga ID.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.State">
+            <summary>
+            Additional state.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.Endpoint">
+            <summary>
+            Timeout endpoint name.
+            </summary>
+            <remarks>
+            It is important that this property is declared before the <see cref="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.Time"/> property
+            for NHibernate to ensure TimeoutEntity_EndpointIdx has proper column order: (Endpoint, Time).
+            </remarks>
+        </member>
+        <member name="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.Time">
+            <summary>
+            The time at which the saga ID expired.
+            </summary>
+            /// <remarks>
+            It is important that this property is declared after the <see cref="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.Endpoint"/> property
+            for NHibernate to ensure TimeoutEntity_EndpointIdx has proper column order: (Endpoint, Time).
+            </remarks>
+        </member>
+        <member name="P:NServiceBus.TimeoutPersisters.NHibernate.TimeoutEntity.Headers">
+            <summary>
+            Store the headers to preserve them across timeouts.
+            </summary>
+        </member>
+    </members>
+</doc>
