@@ -22,13 +22,6 @@ services:
     networks:
       default:
         ipv4_address: 172.20.23.5
-  job-server:
-    build: 
-        context: .
-        dockerfile: JobServer.dockerfile
-    depends_on:
-      - db
-      - web
 
 networks:
   default:
